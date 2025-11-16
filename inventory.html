@@ -11,18 +11,18 @@
     <style>
         /* ===== Imported Main Theme CSS (short core extract) ===== */
         :root {
-  --darkest: #222831;
-  --dark-gray: #393E46;
-  --taupe: #948979;
-  --light-beige: #DFD0B8;
-  --white: #FFFFFF;
-  --cream-bg: #F7F4EE;
-  --yellow-accent: #F4CE14;
-}
+            --darkest: #222831;
+            --dark-gray: #393E46;
+            --taupe: #948979;
+            --light-beige: #DFD0B8;
+            --white: #FFFFFF;
+            --cream-bg: #F7F4EE;
+            --yellow-accent: #F4CE14;
+        }
 
         body {
             background: var(--cream-bg);
-  font-family: "Inter", system-ui, sans-serif;
+            font-family: "Inter", system-ui, sans-serif;
             display: flex;
         }
 
@@ -164,12 +164,13 @@
             border-radius: 8px;
             font-weight: 600;
         }
-        
     </style>
 </head>
 
 <body>
-
+    <button class="hamburger" onclick="toggleSidebar()">
+        ☰
+    </button>
     <nav class="sidebar">
         <h1>EcoTextile</h1>
         <span>Sustain‑Tech Platform</span>
@@ -177,7 +178,7 @@
             <a href="index.html"><i data-feather="bar-chart-2"></i>Dashboard</a>
             <a href="inventory.html" class="active"><i data-feather="archive"></i>Inventory</a>
             <a href="suppliers.html"><i data-feather="truck"></i>Suppliers</a>
-            <a href="mockup-design-assistant.html" ><i data-feather="cpu"></i>Design Assistant</a>
+            <a href="mockup-design-assistant.html"><i data-feather="cpu"></i>Design Assistant</a>
             <a href="mockup-fabric-analysis.html"><i data-feather="layers"></i>Fabric Optimization</a>
             <a href="mockup-trend-analyzer.html"><i data-feather="trending-up"></i>Trend Analyst</a>
             <a href="setting.html"><i data-feather="settings"></i>Settings</a>
@@ -253,106 +254,121 @@
     </div>
 
     <script>
-feather.replace();
+        feather.replace();
 
-// === LOAD DATA FROM LOCAL STORAGE ===
-window.addEventListener("DOMContentLoaded", () => {
-  const savedItems = JSON.parse(localStorage.getItem("inventory")) || [];
-  const t = document.querySelector("#inventoryTable tbody");
+        // === LOAD DATA FROM LOCAL STORAGE ===
+        window.addEventListener("DOMContentLoaded", () => {
+            const savedItems = JSON.parse(localStorage.getItem("inventory")) || [];
+            const t = document.querySelector("#inventoryTable tbody");
 
-  savedItems.forEach(item => {
-    const row = document.createElement("tr");
-    const statusClass = item.stock < 100 ? "status-low" : "status-ok";
-    const statusText = item.stock < 100 ? "Low Stock" : "In Stock";
-    row.innerHTML = `
+            savedItems.forEach(item => {
+                const row = document.createElement("tr");
+                const statusClass = item.stock < 100 ? "status-low" : "status-ok";
+                const statusText = item.stock < 100 ? "Low Stock" : "In Stock";
+                row.innerHTML = `
       <td>${item.name}</td>
       <td>${item.sku}</td>
       <td>${item.mat}</td>
       <td>${item.stock}</td>
       <td class='${statusClass}'>${statusText}</td>
     `;
-    t.appendChild(row);
-  });
-});
+                t.appendChild(row);
+            });
+        });
 
-// === SORT TABLE ===
-function sortTable(col) {
-  const table = document.getElementById("inventoryTable");
-  const rows = Array.from(table.querySelectorAll("tbody tr"));
-  const isNumeric = !isNaN(rows[0].cells[col].innerText.trim());
+        // === SORT TABLE ===
+        function sortTable(col) {
+            const table = document.getElementById("inventoryTable");
+            const rows = Array.from(table.querySelectorAll("tbody tr"));
+            const isNumeric = !isNaN(rows[0].cells[col].innerText.trim());
 
-  rows.sort((a, b) => {
-    let A = a.cells[col].innerText.trim();
-    let B = b.cells[col].innerText.trim();
-    if (isNumeric) return Number(A) - Number(B);
-    return A.localeCompare(B);
-  });
+            rows.sort((a, b) => {
+                let A = a.cells[col].innerText.trim();
+                let B = b.cells[col].innerText.trim();
+                if (isNumeric) return Number(A) - Number(B);
+                return A.localeCompare(B);
+            });
 
-  rows.forEach(r => table.querySelector("tbody").appendChild(r));
-}
+            rows.forEach(r => table.querySelector("tbody").appendChild(r));
+        }
 
-// === SEARCH FILTER ===
-document.getElementById("searchInput").addEventListener("input", function () {
-  let filter = this.value.toLowerCase();
-  document.querySelectorAll("#inventoryTable tbody tr").forEach(row => {
-    row.style.display = row.innerText.toLowerCase().includes(filter) ? "" : "none";
-  });
-});
+        // === SEARCH FILTER ===
+        document.getElementById("searchInput").addEventListener("input", function () {
+            let filter = this.value.toLowerCase();
+            document.querySelectorAll("#inventoryTable tbody tr").forEach(row => {
+                row.style.display = row.innerText.toLowerCase().includes(filter) ? "" : "none";
+            });
+        });
 
-// === OPEN & CLOSE FORM ===
-function openForm() { document.getElementById("formModal").style.display = "flex"; }
-function closeForm() { document.getElementById("formModal").style.display = "none"; }
+        // === OPEN & CLOSE FORM ===
+        function openForm() { document.getElementById("formModal").style.display = "flex"; }
+        function closeForm() { document.getElementById("formModal").style.display = "none"; }
 
-// Close modal when clicking outside form
-window.addEventListener("click", e => {
-  if (e.target.id === "formModal") closeForm();
-});
+        // Close modal when clicking outside form
+        window.addEventListener("click", e => {
+            if (e.target.id === "formModal") closeForm();
+        });
 
-// === ADD ITEM TO TABLE + LOCAL STORAGE ===
-function addItem() {
-  const nameVal = document.getElementById("name").value.trim();
-  const skuVal = document.getElementById("sku").value.trim();
-  const matVal = document.getElementById("mat").value.trim();
-  const stockVal = parseInt(document.getElementById("stock").value.trim(), 10);
+        // === ADD ITEM TO TABLE + LOCAL STORAGE ===
+        function addItem() {
+            const nameVal = document.getElementById("name").value.trim();
+            const skuVal = document.getElementById("sku").value.trim();
+            const matVal = document.getElementById("mat").value.trim();
+            const stockVal = parseInt(document.getElementById("stock").value.trim(), 10);
 
-  if (!nameVal || !skuVal || !matVal || isNaN(stockVal)) {
-    alert("Please fill in all fields correctly.");
-    return;
-  }
+            if (!nameVal || !skuVal || !matVal || isNaN(stockVal)) {
+                alert("Please fill in all fields correctly.");
+                return;
+            }
 
-  // create row for table
-  const t = document.querySelector("#inventoryTable tbody");
-  const row = document.createElement("tr");
-  const statusClass = stockVal < 100 ? "status-low" : "status-ok";
-  const statusText = stockVal < 100 ? "Low Stock" : "In Stock";
+            // create row for table
+            const t = document.querySelector("#inventoryTable tbody");
+            const row = document.createElement("tr");
+            const statusClass = stockVal < 100 ? "status-low" : "status-ok";
+            const statusText = stockVal < 100 ? "Low Stock" : "In Stock";
 
-  row.innerHTML = `
+            row.innerHTML = `
     <td>${nameVal}</td>
     <td>${skuVal}</td>
     <td>${matVal}</td>
     <td>${stockVal}</td>
     <td class='${statusClass}'>${statusText}</td>
   `;
-  t.appendChild(row);
+            t.appendChild(row);
 
-  // === SAVE TO LOCAL STORAGE ===
-  const savedItems = JSON.parse(localStorage.getItem("inventory")) || [];
-  savedItems.push({
-    name: nameVal,
-    sku: skuVal,
-    mat: matVal,
-    stock: stockVal
-  });
-  localStorage.setItem("inventory", JSON.stringify(savedItems));
+            // === SAVE TO LOCAL STORAGE ===
+            const savedItems = JSON.parse(localStorage.getItem("inventory")) || [];
+            savedItems.push({
+                name: nameVal,
+                sku: skuVal,
+                mat: matVal,
+                stock: stockVal
+            });
+            localStorage.setItem("inventory", JSON.stringify(savedItems));
 
-  // reset form
-  document.getElementById("name").value = "";
-  document.getElementById("sku").value = "";
-  document.getElementById("mat").value = "";
-  document.getElementById("stock").value = "";
-  closeForm();
-}
-</script>
+            // reset form
+            document.getElementById("name").value = "";
+            document.getElementById("sku").value = "";
+            document.getElementById("mat").value = "";
+            document.getElementById("stock").value = "";
+            closeForm();
+        }
+        function toggleSidebar() {
+            const sidebar = document.querySelector(".sidebar");
+            const overlay = document.querySelector(".overlay");
+            const body = document.body;
+
+            sidebar.classList.toggle("active");
+            overlay.classList.toggle("show");
+            body.classList.toggle("sidebar-open");
+        }
+
+        function closeSidebar() {
+            document.querySelector(".sidebar").classList.remove("active");
+            document.querySelector(".overlay").classList.remove("show");
+            document.body.classList.remove("sidebar-open");
+        }
+    </script>
 
 
 </body>

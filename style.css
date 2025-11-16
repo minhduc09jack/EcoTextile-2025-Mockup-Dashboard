@@ -18,30 +18,36 @@
 }
 
 body {
-  display: flex; /* <-- BẬT FLEXBOX */
+  display: flex;
+  /* <-- BẬT FLEXBOX */
   min-height: 100vh;
   font-family: "Inter", system-ui, sans-serif;
-  background-color: var(--cream-bg); /* Dùng màu nền #F7F4EE nhất quán */
+  background-color: var(--cream-bg);
+  /* Dùng màu nền #F7F4EE nhất quán */
   color: var(--darkest);
 }
 
 /* ===== 2. Layout (Sidebar & Main) ===== */
 .sidebar {
   width: 260px;
-  background-color: #2C2F36; /* Dùng màu sidebar #2C2F36 nhất quán */
+  background-color: #2C2F36;
+  /* Dùng màu sidebar #2C2F36 nhất quán */
   color: #EEE9DA;
   display: flex;
   flex-direction: column;
   padding: 24px 0;
   box-shadow: 4px 0 16px rgba(0, 0, 0, 0.08);
-  flex-shrink: 0; /* Ngăn sidebar bị co lại */
+  flex-shrink: 0;
+  /* Ngăn sidebar bị co lại */
   transition: all 0.3s ease;
 }
 
 .main {
-  flex: 1; /* <-- FIX LỖI: Bảo .main chiếm hết không gian còn lại */
+  flex: 1;
+  /* <-- FIX LỖI: Bảo .main chiếm hết không gian còn lại */
   padding: 40px;
-  overflow-y: auto; /* Cho phép cuộn nội dung nếu dài */
+  overflow-y: auto;
+  /* Cho phép cuộn nội dung nếu dài */
 }
 
 /* ===== 3. Sidebar Components ===== */
@@ -103,11 +109,13 @@ body {
 .main header {
   margin-bottom: 32px;
 }
+
 .main header h2 {
   font-size: 2rem;
   font-weight: 700;
   margin: 0;
 }
+
 .main header p {
   color: #555;
   margin-top: 6px;
@@ -121,6 +129,7 @@ body {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
   padding: 32px;
 }
+
 .panel h2 {
   font-size: 1.8rem;
   font-weight: 700;
@@ -133,6 +142,7 @@ body {
   padding-bottom: 10px;
   margin-bottom: 10px;
 }
+
 .panel p {
   color: #cecece;
   margin-top: 6px;
@@ -147,6 +157,7 @@ body {
   gap: 24px;
   margin-bottom: 40px;
 }
+
 .kpi-card {
   background: var(--white);
   border-radius: 16px;
@@ -154,34 +165,42 @@ body {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
+
 .kpi-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
+
 .kpi-card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 .kpi-card-header h3 {
   font-size: 0.95rem;
   color: #777;
   margin: 0;
 }
+
 .kpi-card-header i {
   color: #777;
 }
+
 .kpi-value {
   margin-top: 14px;
 }
+
 .kpi-value .value {
   font-size: 2rem;
   font-weight: 700;
 }
+
 .kpi-value .unit {
   font-size: 1.25rem;
   font-weight: 600;
 }
+
 .kpi-meta {
   font-size: 0.8rem;
   color: #888;
@@ -194,18 +213,21 @@ body {
   grid-template-columns: 2fr 1fr;
   gap: 24px;
 }
+
 .chart-card {
   background: var(--white);
   border-radius: 16px;
   padding: 24px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
 }
+
 .chart-card h3 {
   margin-top: 0;
   font-size: 1rem;
   font-weight: 600;
   margin-bottom: 16px;
 }
+
 .bar-chart {
   height: 260px;
   display: flex;
@@ -213,23 +235,27 @@ body {
   justify-content: space-between;
   gap: 10px;
 }
+
 .bar {
   flex: 1;
   background: var(--darkest);
   border-radius: 8px 8px 0 0;
   transition: height 0.4s ease;
 }
+
 .workflow-list {
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
+
 .workflow-item {
   display: flex;
   align-items: center;
   gap: 16px;
 }
+
 .workflow-icon {
   width: 40px;
   height: 40px;
@@ -240,16 +266,20 @@ body {
   justify-content: center;
   flex-shrink: 0;
 }
-.workflow-icon i, .workflow-icon svg {
+
+.workflow-icon i,
+.workflow-icon svg {
   color: var(--darkest);
   stroke: var(--darkest);
   width: 18px;
   height: 18px;
 }
+
 .workflow-item h4 {
   margin: 0;
   font-weight: 600;
 }
+
 .workflow-item p {
   margin: 4px 0 0;
   color: #555;
@@ -263,6 +293,7 @@ body {
   gap: 2rem;
   margin-top: 1.5rem;
 }
+
 .metric-item {
   background: #fdfcfb;
   border-radius: 10px;
@@ -274,10 +305,12 @@ body {
   align-items: center;
   transition: all 0.2s ease;
 }
+
 .metric-item:hover {
   background: #fff7e6;
   border-color: #ffd966;
 }
+
 .score-bar {
   height: 8px;
   border-radius: 4px;
@@ -285,12 +318,14 @@ body {
   overflow: hidden;
   margin-top: 4px;
 }
+
 .score-fill {
   height: 100%;
   border-radius: 4px;
   background-color: var(--darkest);
   transition: width 0.4s ease;
 }
+
 .recommendation {
   background: #2C2F36;
   border-radius: 12px;
@@ -298,16 +333,19 @@ body {
   padding: 25px;
   text-align: center;
 }
+
 .recommendation i {
   width: 32px;
   height: 32px;
   color: var(--yellow-accent);
 }
+
 .recommendation h3 {
   color: var(--yellow-accent);
   margin-top: 10px;
   font-size: 1.4rem;
 }
+
 .recommendation span {
   font-size: 2rem;
   font-weight: 700;
@@ -327,13 +365,17 @@ button {
   cursor: pointer;
   transition: 0.25s;
 }
+
 button:hover {
   background-color: var(--dark-gray);
+  width: 50px;
 }
+
 .recommendation button {
   background-color: var(--yellow-accent);
   color: var(--darkest);
 }
+
 .recommendation button:hover {
   background-color: #ffe24a;
 }
@@ -347,12 +389,195 @@ button:hover {
 
 @media (max-width: 900px) {
   .sidebar {
-    display: none; /* Ẩn sidebar trên màn hình nhỏ */
+    display: none;
+    /* Ẩn sidebar trên màn hình nhỏ */
   }
+
   .main {
-    padding: 20px; /* Giảm padding trên màn hình nhỏ */
+    padding: 20px;
+    /* Giảm padding trên màn hình nhỏ */
   }
+
   .analysis-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ===== MOBILE RESPONSIVE (max-width: 768px) ===== */
+@media (max-width: 768px) {
+
+  /* 1. ẨN SIDEBAR + FULL WIDTH MAIN */
+  body {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .main {
+    padding: 16px;
+  }
+
+
+  /* 2. Chuyển panel thành 1 cột */
+  .panel {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 0;
+    /* mobile nên gọn */
+    box-shadow: none;
+    background: transparent;
+  }
+
+
+  /* 3. Chart-container → 1 cột */
+  .charts-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+  }
+
+
+  /* 4. Risk card mobile đẹp hơn */
+  .risk-card {
+    margin-top: 12px;
+    min-height: auto;
+    padding: 20px;
+  }
+
+  .risk-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .risk-card p {
+    font-size: 0.9rem;
+  }
+
+
+  /* 5. Fix overflow canvas */
+  canvas {
+    max-width: 100% !important;
+  }
+
+
+  /* 6. Giảm font + padding cho card */
+  .chart-card {
+    padding: 16px;
+  }
+
+  .chart-card h3 {
+    font-size: 0.95rem;
+  }
+
+
+  /* 7. Button responsive */
+  button {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+  }
+}
+
+/* ===== HAMBURGER BUTTON ===== */
+.hamburger {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  font-size: 28px;
+  background: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 999;
+  display: none;
+  /* PC ẩn */
+}
+
+
+/* ===== SIDEBAR MOBILE MODE ===== */
+@media (max-width: 768px) {
+
+  .hamburger {
+    display: block;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -260px;
+    /* ẩn bên trái */
+    height: 100%;
+    width: 240px;
+    background: white;
+    padding: 20px;
+    box-shadow: 4px 0 14px rgba(0, 0, 0, 0.25);
+    transition: 0.35s ease;
+    z-index: 1000;
+  }
+
+  .sidebar.active {
+    left: 0;
+    /* mở menu */
+  }
+
+  /* Khi mở sidebar → khóa scroll */
+  body.sidebar-open {
+    overflow: hidden;
+  }
+
+  /* Overlay đen */
+  .overlay {
+    position: fixed;
+    inset: 0;
+    display: none;
+    z-index: 900;
+  }
+
+  .overlay.show {
+    display: block;
+  }
+}
+
+/* ===== HAMBURGER BUTTON ===== */
+.hamburger {
+  display: none;
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  font-size: 28px;
+  background: var(--darkest);
+  color: var(--white);
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 1001;
+  border: none;
+}
+
+/* ===== SIDEBAR MOBILE ===== */
+.sidebar.active {
+  transform: translateX(0);
+}
+
+/* ===== MOBILE BREAKPOINT ===== */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  .sidebar {
+    display: block !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    transform: translateX(-100%);
+    width: 260px;
+    background: #2C2F36;
+    z-index: 1000;
+    transition: 0.3s ease;
+    padding-top: 40px;
   }
 }

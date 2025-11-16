@@ -50,6 +50,9 @@
 </head>
 
 <body>
+    <button class="hamburger" onclick="toggleSidebar()">
+        ☰
+    </button>
     <nav class="sidebar">
         <div>
             <h1>EcoTextile</h1>
@@ -160,6 +163,21 @@
 
     <script>
         feather.replace();
+        function toggleSidebar() {
+            const sidebar = document.querySelector(".sidebar");
+            const overlay = document.querySelector(".overlay");
+            const body = document.body;
+
+            sidebar.classList.toggle("active");
+            overlay.classList.toggle("show");
+            body.classList.toggle("sidebar-open");
+        }
+
+        function closeSidebar() {
+            document.querySelector(".sidebar").classList.remove("active");
+            document.querySelector(".overlay").classList.remove("show");
+            document.body.classList.remove("sidebar-open");
+        }
     </script>
 </body>
 
