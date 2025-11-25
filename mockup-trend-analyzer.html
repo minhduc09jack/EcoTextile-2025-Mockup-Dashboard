@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Trend Analyzer</title>
+  <title>Trình phân tích xu hướng AI</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://unpkg.com/feather-icons"></script>
   <link rel="stylesheet" href="style.css">
@@ -240,16 +240,16 @@
   <nav class="sidebar">
     <div>
       <h1>EcoTextile</h1>
-      <span>Sustain-Tech Platform</span>
+      <span>Nền tảng Công nghệ Bền vững</span>
     </div>
     <div class="nav">
-      <a href="index.html"><i data-feather="bar-chart-2"></i>Dashboard</a>
-      <a href="inventory.html"><i data-feather="archive"></i>Inventory</a>
-      <a href="suppliers.html"><i data-feather="truck"></i>Suppliers</a>
-      <a href="mockup-design-assistant.html"><i data-feather="cpu"></i>Design Assistant</a>
-      <a href="mockup-fabric-analysis.html"><i data-feather="layers"></i>Fabric Optimization</a>
-      <a href="mockup-trend-analyzer.html" class="active"><i data-feather="trending-up"></i>Trend Analyst</a>
-      <a href="setting.html"><i data-feather="settings"></i>Settings</a>
+      <a href="index.html"><i data-feather="bar-chart-2"></i>Bảng điều khiển</a>
+      <a href="inventory.html"><i data-feather="archive"></i>Kho</a>
+      <a href="suppliers.html"><i data-feather="truck"></i>Nhà cung cấp</a>
+      <a href="mockup-design-assistant.html"><i data-feather="cpu"></i>Trợ lý thiết kế</a>
+      <a href="mockup-fabric-analysis.html"><i data-feather="layers"></i>Tối ưu vải</a>
+      <a href="mockup-trend-analyzer.html" class="active"><i data-feather="trending-up"></i>Phân tích xu hướng</a>
+      <a href="setting.html"><i data-feather="settings"></i>Cài đặt</a>
     </div>
   </nav>
 
@@ -258,23 +258,23 @@
       <!-- Left Column: Main Trend Chart + Grid Charts -->
       <div>
         <div class="chart-card">
-          <h3>Demand Forecast: Q1 - Q3 2026</h3>
+          <h3>Dự báo nhu cầu: Q1 - Q3 2026</h3>
           <canvas id="trendChart" height="200"></canvas>
         </div>
 
         <div class="charts-grid">
           <div class="chart-card">
-            <h3>Fabric Price Volatility (2025)</h3>
+            <h3>Biến động giá vải (2025)</h3>
             <canvas id="priceChart" height="170"></canvas>
           </div>
 
           <div class="chart-card">
-            <h3>Seasonal Demand Index</h3>
+            <h3>Chỉ số nhu cầu theo mùa</h3>
             <canvas id="seasonChart" height="170"></canvas>
           </div>
 
           <div class="chart-card">
-            <h3>Color Trend Strength</h3>
+            <h3>Độ mạnh xu hướng màu</h3>
             <canvas id="colorChart" height="170"></canvas>
           </div>
         </div>
@@ -286,34 +286,34 @@
           <div class="risk-icon">
             <i class="fas fa-exclamation-triangle"></i>
           </div>
-          <h3>OVERPRODUCTION RISK</h3>
+          <h3>RỦI RO SẢN XUẤT QUÁ MỨC</h3>
         </div>
 
-        <p>Forecast analysis indicates 'Oversized Logo Tee' is experiencing a significant decline in demand. Immediate
-          production adjustment is strongly advised to minimize inventory costs.</p>
+        <p>Phân tích dự báo cho thấy 'Áo logo quá khổ' đang giảm mạnh về nhu cầu. Khuyến nghị điều chỉnh sản xuất ngay
+          để giảm chi phí tồn kho.</p>
 
         <div class="risk-details">
           <div class="risk-detail-item">
-            <span class="risk-detail-label">AI Recommendation</span>
-            <span class="risk-detail-value risk-level-high">REDUCE BATCH SIZE</span>
+            <span class="risk-detail-label">Gợi ý AI</span>
+            <span class="risk-detail-value risk-level-high">GIẢM SỐ LƯỢNG SẢN XUẤT</span>
           </div>
           <div class="risk-detail-item">
-            <span class="risk-detail-label">Confidence Score</span>
+            <span class="risk-detail-label">Điểm tin cậy</span>
             <span class="risk-detail-value confidence-high">95%</span>
           </div>
           <div class="risk-detail-item">
-            <span class="risk-detail-label">Potential Savings</span>
-            <span class="risk-detail-value savings-high">2,500 units</span>
+            <span class="risk-detail-label">Tiết kiệm tiềm năng</span>
+            <span class="risk-detail-value savings-high">2.500 đơn vị</span>
           </div>
           <div class="risk-detail-item">
-            <span class="risk-detail-label">Risk Level</span>
-            <span class="risk-detail-value risk-level-high">HIGH</span>
+            <span class="risk-detail-label">Mức độ rủi ro</span>
+            <span class="risk-detail-value risk-level-high">CAO</span>
           </div>
         </div>
 
         <button>
           <i class="fas fa-check-circle"></i>
-          Confirm Production Change
+          Xác nhận thay đổi sản xuất
         </button>
       </div>
     </div>
@@ -327,10 +327,10 @@
     new Chart(document.getElementById("trendChart"), {
       type: 'line',
       data: {
-        labels: ["Current", "Forecast", "Q3 2026"],
+        labels: ["Hiện tại", "Dự báo", "Q3 2026"],
         datasets: [
-          { label: "Oversized Logo Tee", data: [90, 65, 40], borderColor: "#222831", borderWidth: 2, fill: false },
-          { label: "Minimalist Core", data: [80, 78, 77], borderColor: "#948979", borderWidth: 2, fill: false }
+          { label: "Áo logo quá khổ", data: [90, 65, 40], borderColor: "#222831", borderWidth: 2, fill: false },
+          { label: "Bộ sưu tập tối giản", data: [80, 78, 77], borderColor: "#948979", borderWidth: 2, fill: false }
         ]
       },
       options: {
@@ -352,7 +352,7 @@
     new Chart(document.getElementById("priceChart"), {
       type: 'line',
       data: {
-        labels: ["Jan", "Mar", "Jun", "Sep", "Dec"],
+        labels: ["Thg 1", "Thg 3", "Thg 6", "Thg 9", "Thg 12"],
         datasets: [
           { label: "Cotton", data: [12, 14, 16, 13, 15], borderColor: "#222831", borderWidth: 2, tension: 0.3 },
           { label: "Bamboo", data: [10, 11, 10, 12, 11], borderColor: "#948979", borderWidth: 2, tension: 0.3 },
@@ -378,7 +378,7 @@
     new Chart(document.getElementById("seasonChart"), {
       type: 'line',
       data: {
-        labels: ["Spring", "Summer", "Fall", "Winter"],
+        labels: ["Xuân", "Hè", "Thu", "Đông"],
         datasets: [{ label: "Seasonal Demand", data: [70, 90, 85, 60], borderColor: "#222831", borderWidth: 2, tension: 0.25 }]
       },
       options: {
@@ -400,11 +400,11 @@
     new Chart(document.getElementById("colorChart"), {
       type: 'line',
       data: {
-        labels: ["2024", "2025", "2026 (Forecast)"],
+        labels: ["2024", "2025", "2026 (Dự báo)"],
         datasets: [
           { label: "Taupe", data: [60, 75, 88], borderColor: "#948979", borderWidth: 2, tension: 0.3 },
-          { label: "Gray", data: [58, 63, 67], borderColor: "#222831", borderWidth: 2, tension: 0.3 },
-          { label: "Earth-tone", data: [70, 72, 78], borderColor: "#6d5846", borderWidth: 2, tension: 0.3 }
+          { label: "Xám", data: [58, 63, 67], borderColor: "#222831", borderWidth: 2, tension: 0.3 },
+          { label: "Tông đất", data: [70, 72, 78], borderColor: "#6d5846", borderWidth: 2, tension: 0.3 }
         ]
       },
       options: {

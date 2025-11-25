@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Inventory Management - EcoTextil</title>
+    <title>Quản lý Kho - EcoTextile</title>
     <script src="https://unpkg.com/feather-icons"></script>
     <link rel="stylesheet" href="style.css">
 
@@ -173,66 +173,66 @@
     </button>
     <nav class="sidebar">
         <h1>EcoTextile</h1>
-        <span>Sustain‑Tech Platform</span>
+        <span>Nền tảng Công nghệ Bền vững</span>
         <div class="nav">
-            <a href="index.html"><i data-feather="bar-chart-2"></i>Dashboard</a>
-            <a href="inventory.html" class="active"><i data-feather="archive"></i>Inventory</a>
-            <a href="suppliers.html"><i data-feather="truck"></i>Suppliers</a>
-            <a href="mockup-design-assistant.html"><i data-feather="cpu"></i>Design Assistant</a>
-            <a href="mockup-fabric-analysis.html"><i data-feather="layers"></i>Fabric Optimization</a>
-            <a href="mockup-trend-analyzer.html"><i data-feather="trending-up"></i>Trend Analyst</a>
-            <a href="setting.html"><i data-feather="settings"></i>Settings</a>
+            <a href="index.html"><i data-feather="bar-chart-2"></i>Bảng điều khiển</a>
+            <a href="inventory.html" class="active"><i data-feather="archive"></i>Kho</a>
+            <a href="suppliers.html"><i data-feather="truck"></i>Nhà cung cấp</a>
+            <a href="mockup-design-assistant.html"><i data-feather="cpu"></i>Trợ lý thiết kế</a>
+            <a href="mockup-fabric-analysis.html"><i data-feather="layers"></i>Tối ưu vải</a>
+            <a href="mockup-trend-analyzer.html"><i data-feather="trending-up"></i>Phân tích xu hướng</a>
+            <a href="setting.html"><i data-feather="settings"></i>Cài đặt</a>
         </div>
     </nav>
 
     <main class="main">
         <div class="panel">
-            <h2><i data-feather="archive"></i> Inventory Management</h2>
-            <p>Track raw materials & finished goods.</p>
+            <h2><i data-feather="archive"></i> Quản lý Kho</h2>
+            <p>Theo dõi nguyên liệu thô & thành phẩm.</p>
 
             <div class="toolbar">
-                <input type="text" id="searchInput" placeholder="Search inventory...">
-                <button onclick="openForm()"><i data-feather="plus"></i> Add Item</button>
+                <input type="text" id="searchInput" placeholder="Tìm kiếm kho...">
+                <button onclick="openForm()"><i data-feather="plus"></i> Thêm mục</button>
             </div>
 
             <table id="inventoryTable">
                 <thead>
                     <tr>
-                        <th onclick="sortTable(0)">Item Name</th>
-                        <th onclick="sortTable(1)">SKU</th>
-                        <th onclick="sortTable(2)">Material</th>
-                        <th onclick="sortTable(3)">Stock Level</th>
-                        <th>Status</th>
+                        <th onclick="sortTable(0)">Tên sản phẩm</th>
+                        <th onclick="sortTable(1)">Mã SKU</th>
+                        <th onclick="sortTable(2)">Chất liệu</th>
+                        <th onclick="sortTable(3)">Tồn kho</th>
+                        <th>Trạng thái</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Men's Cotton Tee</td>
+                        <td>Áo thun cotton nam</td>
                         <td>CM-TEE-001</td>
                         <td>Recycled Cotton</td>
                         <td>1200</td>
-                        <td class="status-ok">In Stock</td>
+                        <td class="status-ok">Còn hàng</td>
                     </tr>
                     <tr>
-                        <td>Sport Shorts</td>
+                        <td>Quần short thể thao</td>
                         <td>CM-SRT-004</td>
                         <td>Recycled Polyester</td>
                         <td>850</td>
-                        <td class="status-ok">In Stock</td>
+                        <td class="status-ok">Còn hàng</td>
                     </tr>
                     <tr>
-                        <td>Organic Cotton Bale</td>
+                        <td>Khối bông hữu cơ</td>
                         <td>MAT-COT-002</td>
-                        <td>Raw Material</td>
+                        <td>Nguyên liệu thô</td>
                         <td>45</td>
-                        <td class="status-low">Low Stock</td>
+                        <td class="status-low">Tồn kho thấp</td>
                     </tr>
                     <tr>
-                        <td>Natural Indigo Dye</td>
+                        <td>Thuốc nhuộm chàm tự nhiên</td>
                         <td>MAT-DYE-007</td>
-                        <td>Natural Dye</td>
+                        <td>Thuốc nhuộm tự nhiên</td>
                         <td>300</td>
-                        <td class="status-ok">In Stock</td>
+                        <td class="status-ok">Còn hàng</td>
                     </tr>
                 </tbody>
             </table>
@@ -243,13 +243,13 @@
     <div id="formModal"
         style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.4); justify-content:center; align-items:center;">
         <div style="background:white; padding:20px; border-radius:10px; width:320px;">
-            <h3>Add New Item</h3><br>
-            <input id="name" placeholder="Item Name" style="width:100%; padding:8px; margin-bottom:6px;">
-            <input id="sku" placeholder="SKU" style="width:100%; padding:8px; margin-bottom:6px;">
-            <input id="mat" placeholder="Material" style="width:100%; padding:8px; margin-bottom:6px;">
-            <input id="stock" type="number" placeholder="Stock" style="width:100%; padding:8px; margin-bottom:6px;">
+            <h3>Thêm sản phẩm mới</h3><br>
+            <input id="name" placeholder="Tên sản phẩm" style="width:100%; padding:8px; margin-bottom:6px;">
+            <input id="sku" placeholder="Mã SKU" style="width:100%; padding:8px; margin-bottom:6px;">
+            <input id="mat" placeholder="Chất liệu" style="width:100%; padding:8px; margin-bottom:6px;">
+            <input id="stock" type="number" placeholder="Số lượng" style="width:100%; padding:8px; margin-bottom:6px;">
             <button onclick="addItem()"
-                style="background:var(--yellow-accent); color:rgb(255, 255, 255); padding:8px; width:100%; border:none; border-radius:6px; margin-top:4px;">Save</button>
+                style="background:var(--yellow-accent); color:rgb(255, 255, 255); padding:8px; width:100%; border:none; border-radius:6px; margin-top:4px;">Lưu</button>
         </div>
     </div>
 
@@ -264,7 +264,7 @@
             savedItems.forEach(item => {
                 const row = document.createElement("tr");
                 const statusClass = item.stock < 100 ? "status-low" : "status-ok";
-                const statusText = item.stock < 100 ? "Low Stock" : "In Stock";
+                const statusText = item.stock < 100 ? "Tồn kho thấp" : "Còn hàng";
                 row.innerHTML = `
       <td>${item.name}</td>
       <td>${item.sku}</td>
@@ -317,7 +317,7 @@
             const stockVal = parseInt(document.getElementById("stock").value.trim(), 10);
 
             if (!nameVal || !skuVal || !matVal || isNaN(stockVal)) {
-                alert("Please fill in all fields correctly.");
+                alert("Vui lòng điền tất cả các trường đúng.");
                 return;
             }
 
@@ -325,7 +325,7 @@
             const t = document.querySelector("#inventoryTable tbody");
             const row = document.createElement("tr");
             const statusClass = stockVal < 100 ? "status-low" : "status-ok";
-            const statusText = stockVal < 100 ? "Low Stock" : "In Stock";
+            const statusText = stockVal < 100 ? "Tồn kho thấp" : "Còn hàng";
 
             row.innerHTML = `
     <td>${nameVal}</td>
