@@ -485,31 +485,25 @@ button:hover {
 
   /* 7. Button responsive */
   button {
-    width: 100%;
     padding: 12px;
     font-size: 1rem;
   }
 }
 
-/* ===== HAMBURGER BUTTON ===== */
-.hamburger {
-  position: fixed;
-  top: 16px;
-  left: 16px;
-  font-size: 28px;
-  background: white;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  z-index: 999;
-  display: none;
-  /* PC ẩn */
-}
-
-
 /* ===== SIDEBAR MOBILE MODE ===== */
 @media (max-width: 768px) {
+  .main header h2{
+    text-align: center;
+    padding-bottom: 20px;
+  }
+
+  .panel h2{
+    text-align: center;
+    padding: 0 20px;
+  }
+  .panel p{
+    text-align: center;
+  color:#2C2F36  }
 
   .hamburger {
     display: block;
