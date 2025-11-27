@@ -172,6 +172,36 @@
             border-radius: 8px;
             font-weight: 600;
         }
+
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            /* BẬT SCROLL NGANG */
+            -webkit-overflow-scrolling: touch;
+            min-width: 0 !important;
+            /* QUAN TRỌNG CHO iPHONE */
+        }
+
+        table {
+            min-width: 700px;
+            /* <--- BẮT TABLE PHẢI RỘNG HƠN MOBILE */
+            border-collapse: collapse;
+        }
+        @media (max-width: 768px) {
+    body {
+        flex-direction: column !important;
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    .main {
+        width: 100% !important;
+        min-width: 100% !important;
+        overflow-x: hidden;
+        min-width: 0 !important;
+    }
+}
+
     </style>
 </head>
 
@@ -214,49 +244,50 @@
             </div>
 
 
+            <div class="table-wrapper">
+                <table id="inventoryTable">
+                    <thead>
+                        <tr>
+                            <th onclick="sortTable(0)">Tên sản phẩm</th>
+                            <th onclick="sortTable(1)">Mã SKU</th>
+                            <th onclick="sortTable(2)">Chất liệu</th>
+                            <th onclick="sortTable(3)">Tồn kho</th>
+                            <th onclick="sortTable(4)">Danh mục</th>
+                            <th>Trạng thái</th>
+                        </tr>
+                    </thead>
+            </div>
 
-            <table id="inventoryTable">
-                <thead>
-                    <tr>
-                        <th onclick="sortTable(0)">Tên sản phẩm</th>
-                        <th onclick="sortTable(1)">Mã SKU</th>
-                        <th onclick="sortTable(2)">Chất liệu</th>
-                        <th onclick="sortTable(3)">Tồn kho</th>
-                        <th onclick="sortTable(4)">Danh mục</th>
-                        <th>Trạng thái</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr>
-                        <td>Áo thun cotton nam</td>
-                        <td>CM-TEE-001</td>
-                        <td>Recycled Cotton</td>
-                        <td>1200</td>
-                        <td class="status-ok">Còn hàng</td>
-                    </tr>
-                    <tr>
-                        <td>Quần short thể thao</td>
-                        <td>CM-SRT-004</td>
-                        <td>Recycled Polyester</td>
-                        <td>850</td>
-                        <td class="status-ok">Còn hàng</td>
-                    </tr>
-                    <tr>
-                        <td>Khối bông hữu cơ</td>
-                        <td>MAT-COT-002</td>
-                        <td>Nguyên liệu thô</td>
-                        <td>45</td>
-                        <td class="status-low">Tồn kho thấp</td>
-                    </tr>
-                    <tr>
-                        <td>Thuốc nhuộm chàm tự nhiên</td>
-                        <td>MAT-DYE-007</td>
-                        <td>Thuốc nhuộm tự nhiên</td>
-                        <td>300</td>
-                        <td class="status-ok">Còn hàng</td>
-                    </tr>
-                </tbody>
+            <tbody>
+                <tr>
+                    <td>Áo thun cotton nam</td>
+                    <td>CM-TEE-001</td>
+                    <td>Recycled Cotton</td>
+                    <td>1200</td>
+                    <td class="status-ok">Còn hàng</td>
+                </tr>
+                <tr>
+                    <td>Quần short thể thao</td>
+                    <td>CM-SRT-004</td>
+                    <td>Recycled Polyester</td>
+                    <td>850</td>
+                    <td class="status-ok">Còn hàng</td>
+                </tr>
+                <tr>
+                    <td>Khối bông hữu cơ</td>
+                    <td>MAT-COT-002</td>
+                    <td>Nguyên liệu thô</td>
+                    <td>45</td>
+                    <td class="status-low">Tồn kho thấp</td>
+                </tr>
+                <tr>
+                    <td>Thuốc nhuộm chàm tự nhiên</td>
+                    <td>MAT-DYE-007</td>
+                    <td>Thuốc nhuộm tự nhiên</td>
+                    <td>300</td>
+                    <td class="status-ok">Còn hàng</td>
+                </tr>
+            </tbody>
             </table>
         </div>
     </main>
