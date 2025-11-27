@@ -468,6 +468,7 @@ button:hover {
 
 
   /* 5. Fix overflow canvas */
+
   canvas {
     max-width: 100% !important;
   }

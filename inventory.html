@@ -11,14 +11,21 @@
     <style>
         /* ===== Imported Main Theme CSS (short core extract) ===== */
         :root {
-  --darkest: #1A2A3A;      /* primary dark */
-  --dark-gray: #243B53;    /* deep navy */
-  --taupe: #3E5C76;        /* muted blue */
-  --light-beige: #9DB4C0;  /* soft pastel blue */
-  --white: #FFFFFF;        /* giữ nguyên */
-  --cream-bg: #E5E9F0;     /* cool light grey */
-  --yellow-accent: #00D1D1;/* teal accent */
-}
+            --darkest: #1A2A3A;
+            /* primary dark */
+            --dark-gray: #243B53;
+            /* deep navy */
+            --taupe: #3E5C76;
+            /* muted blue */
+            --light-beige: #9DB4C0;
+            /* soft pastel blue */
+            --white: #FFFFFF;
+            /* giữ nguyên */
+            --cream-bg: #E5E9F0;
+            /* cool light grey */
+            --yellow-accent: #00D1D1;
+            /* teal accent */
+        }
 
 
         body {
@@ -192,9 +199,21 @@
             <p>Theo dõi nguyên liệu thô & thành phẩm.</p>
 
             <div class="toolbar">
-                <input type="text" id="searchInput" placeholder="Tìm kiếm kho...">
+                <div style="display:flex; gap:10px;">
+                    <input type="text" id="searchInput" placeholder="Tìm kiếm...">
+
+                    <select id="categoryFilter" style="padding:10px; border-radius:8px; border:1px solid #bbb;">
+                        <option value="">Tất cả danh mục</option>
+                        <option value="Thành phẩm">Thành phẩm</option>
+                        <option value="Nguyên liệu thô">Nguyên liệu thô</option>
+                        <option value="Phụ liệu – Hoá chất">Phụ liệu – Hoá chất</option>
+                    </select>
+                </div>
+
                 <button onclick="openForm()"><i data-feather="plus"></i> Thêm mục</button>
             </div>
+
+
 
             <table id="inventoryTable">
                 <thead>
@@ -203,9 +222,11 @@
                         <th onclick="sortTable(1)">Mã SKU</th>
                         <th onclick="sortTable(2)">Chất liệu</th>
                         <th onclick="sortTable(3)">Tồn kho</th>
+                        <th onclick="sortTable(4)">Danh mục</th>
                         <th>Trạng thái</th>
                     </tr>
                 </thead>
+
                 <tbody>
                     <tr>
                         <td>Áo thun cotton nam</td>
@@ -241,137 +262,136 @@
     </main>
 
     <!-- Modal Add Form -->
-    <div id="formModal"
-        style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.4); justify-content:center; align-items:center;">
-        <div style="background:white; padding:20px; border-radius:10px; width:320px;">
+
+    <div id="formModal" class="modal-overlay">
+        <div class="modal-box">
             <h3>Thêm sản phẩm mới</h3><br>
-            <input id="name" placeholder="Tên sản phẩm" style="width:100%; padding:8px; margin-bottom:6px;">
-            <input id="sku" placeholder="Mã SKU" style="width:100%; padding:8px; margin-bottom:6px;">
-            <input id="mat" placeholder="Chất liệu" style="width:100%; padding:8px; margin-bottom:6px;">
-            <input id="stock" type="number" placeholder="Số lượng" style="width:100%; padding:8px; margin-bottom:6px;">
-            <button onclick="addItem()"
-                style="background:var(--yellow-accent); color:rgb(255, 255, 255); padding:8px; width:100%; border:none; border-radius:6px; margin-top:4px;">Lưu</button>
+
+            <input id="name" placeholder="Tên sản phẩm">
+            <input id="sku" placeholder="Mã SKU">
+            <input id="mat" placeholder="Chất liệu">
+            <input id="stock" type="number" placeholder="Số lượng">
+
+            <select id="catInput">
+                <option value="">Chọn danh mục</option>
+                <option value="Thành phẩm">Thành phẩm</option>
+                <option value="Nguyên liệu thô">Nguyên liệu thô</option>
+                <option value="Phụ liệu – Hoá chất">Phụ liệu – Hoá chất</option>
+            </select>
+
+            <button onclick="addItem()" style="color: #E5E9F0;">Lưu</button>
         </div>
     </div>
 
     <script>
+        // === SIDEBAR TOGGLE ===
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.classList.toggle('active');
+        }
         feather.replace();
 
-        // === LOAD DATA FROM LOCAL STORAGE ===
-        window.addEventListener("DOMContentLoaded", () => {
+        // === DEFAULT PRODUCTS ===
+        const defaultProducts = [
+            { name: "Áo hoodie unisex", sku: "FD-HDD-010", mat: "Organic Cotton", stock: 540, category: "Thành phẩm" },
+            { name: "Váy midi dáng A", sku: "FD-SKT-014", mat: "Recycled Polyester", stock: 320, category: "Thành phẩm" },
+            { name: "Áo polo thể thao", sku: "FD-POL-008", mat: "Coolmax Recycled Fiber", stock: 780, category: "Thành phẩm" },
+            { name: "Túi tote canvas", sku: "ACC-BAG-003", mat: "Recycled Canvas", stock: 430, category: "Thành phẩm" },
+            { name: "Sợi polyester tái chế", sku: "RAW-FIB-006", mat: "Recycled Polyester Fiber", stock: 260, category: "Nguyên liệu thô" },
+            { name: "Vải cotton hữu cơ 2 lớp", sku: "RAW-FAB-004", mat: "Organic Cotton", stock: 150, category: "Nguyên liệu thô" },
+            { name: "Sợi tre tự nhiên", sku: "RAW-BMB-002", mat: "Natural Bamboo Fiber", stock: 95, category: "Nguyên liệu thô" },
+            { name: "Thuốc nhuộm gốc thực vật màu đỏ", sku: "CHM-DYE-009", mat: "Natural Plant Dye", stock: 180, category: "Phụ liệu – Hoá chất" },
+            { name: "Chỉ may tái chế 60/3", sku: "ACC-THR-011", mat: "Recycled Thread", stock: 540, category: "Phụ liệu – Hoá chất" },
+            { name: "Dây kéo kim loại tái chế", sku: "ACC-ZIP-012", mat: "Recycled Metal", stock: 220, category: "Phụ liệu – Hoá chất" }
+        ];
+
+        // === INIT LOCAL STORAGE ===
+        if (!localStorage.getItem("inventory")) {
+            localStorage.setItem("inventory", JSON.stringify(defaultProducts));
+        }
+
+        // === LOAD TABLE ===
+        function loadTable() {
             const savedItems = JSON.parse(localStorage.getItem("inventory")) || [];
-            const t = document.querySelector("#inventoryTable tbody");
+            const tbody = document.querySelector("#inventoryTable tbody");
+
+            tbody.innerHTML = "";
 
             savedItems.forEach(item => {
                 const row = document.createElement("tr");
-                const statusClass = item.stock < 100 ? "status-low" : "status-ok";
-                const statusText = item.stock < 100 ? "Tồn kho thấp" : "Còn hàng";
+
+                const low = item.stock < 100;
                 row.innerHTML = `
-      <td>${item.name}</td>
-      <td>${item.sku}</td>
-      <td>${item.mat}</td>
-      <td>${item.stock}</td>
-      <td class='${statusClass}'>${statusText}</td>
-    `;
-                t.appendChild(row);
+            <td>${item.name}</td>
+            <td>${item.sku}</td>
+            <td>${item.mat}</td>
+            <td>${item.stock}</td>
+            <td>${item.category}</td>
+            <td class="${low ? 'status-low' : 'status-ok'}">
+                ${low ? 'Tồn kho thấp' : 'Còn hàng'}
+            </td>
+        `;
+
+                tbody.appendChild(row);
             });
-        });
-
-        // === SORT TABLE ===
-        function sortTable(col) {
-            const table = document.getElementById("inventoryTable");
-            const rows = Array.from(table.querySelectorAll("tbody tr"));
-            const isNumeric = !isNaN(rows[0].cells[col].innerText.trim());
-
-            rows.sort((a, b) => {
-                let A = a.cells[col].innerText.trim();
-                let B = b.cells[col].innerText.trim();
-                if (isNumeric) return Number(A) - Number(B);
-                return A.localeCompare(B);
-            });
-
-            rows.forEach(r => table.querySelector("tbody").appendChild(r));
         }
 
-        // === SEARCH FILTER ===
-        document.getElementById("searchInput").addEventListener("input", function () {
-            let filter = this.value.toLowerCase();
+        loadTable();
+
+        // === SEARCH + FILTER ===
+        document.getElementById("searchInput").addEventListener("input", filterTable);
+        document.getElementById("categoryFilter").addEventListener("change", filterTable);
+
+        function filterTable() {
+            const keyword = document.getElementById("searchInput").value.toLowerCase();
+            const category = document.getElementById("categoryFilter").value;
+
             document.querySelectorAll("#inventoryTable tbody tr").forEach(row => {
-                row.style.display = row.innerText.toLowerCase().includes(filter) ? "" : "none";
+                const matchText = row.innerText.toLowerCase().includes(keyword);
+                const matchCat = category === "" || row.cells[4].innerText === category;
+
+                row.style.display = matchText && matchCat ? "" : "none";
             });
-        });
+        }
 
-        // === OPEN & CLOSE FORM ===
-        function openForm() { document.getElementById("formModal").style.display = "flex"; }
-        function closeForm() { document.getElementById("formModal").style.display = "none"; }
-
-        // Close modal when clicking outside form
-        window.addEventListener("click", e => {
-            if (e.target.id === "formModal") closeForm();
-        });
-
-        // === ADD ITEM TO TABLE + LOCAL STORAGE ===
+        // === ADD ITEM ===
         function addItem() {
-            const nameVal = document.getElementById("name").value.trim();
-            const skuVal = document.getElementById("sku").value.trim();
-            const matVal = document.getElementById("mat").value.trim();
-            const stockVal = parseInt(document.getElementById("stock").value.trim(), 10);
+            const nameVal = document.getElementById("name").value;
+            const skuVal = document.getElementById("sku").value;
+            const matVal = document.getElementById("mat").value;
+            const stockVal = Number(document.getElementById("stock").value);
+            const catVal = document.getElementById("catInput").value;
 
-            if (!nameVal || !skuVal || !matVal || isNaN(stockVal)) {
-                alert("Vui lòng điền tất cả các trường đúng.");
+            if (!nameVal || !skuVal || !matVal || !stockVal || !catVal) {
+                alert("Vui lòng điền đầy đủ thông tin!");
                 return;
             }
 
-            // create row for table
-            const t = document.querySelector("#inventoryTable tbody");
-            const row = document.createElement("tr");
-            const statusClass = stockVal < 100 ? "status-low" : "status-ok";
-            const statusText = stockVal < 100 ? "Tồn kho thấp" : "Còn hàng";
-
-            row.innerHTML = `
-    <td>${nameVal}</td>
-    <td>${skuVal}</td>
-    <td>${matVal}</td>
-    <td>${stockVal}</td>
-    <td class='${statusClass}'>${statusText}</td>
-  `;
-            t.appendChild(row);
-
-            // === SAVE TO LOCAL STORAGE ===
             const savedItems = JSON.parse(localStorage.getItem("inventory")) || [];
+
             savedItems.push({
                 name: nameVal,
                 sku: skuVal,
                 mat: matVal,
-                stock: stockVal
+                stock: stockVal,
+                category: catVal
             });
+
             localStorage.setItem("inventory", JSON.stringify(savedItems));
 
-            // reset form
-            document.getElementById("name").value = "";
-            document.getElementById("sku").value = "";
-            document.getElementById("mat").value = "";
-            document.getElementById("stock").value = "";
+            loadTable();
             closeForm();
         }
-        function toggleSidebar() {
-            const sidebar = document.querySelector(".sidebar");
-            const overlay = document.querySelector(".overlay");
-            const body = document.body;
 
-            sidebar.classList.toggle("active");
-            overlay.classList.toggle("show");
-            body.classList.toggle("sidebar-open");
+        // === MODAL ===
+        function openForm() {
+            document.getElementById("formModal").style.display = "flex";
+        }
+        function closeForm() {
+            document.getElementById("formModal").style.display = "none";
         }
 
-        function closeSidebar() {
-            document.querySelector(".sidebar").classList.remove("active");
-            document.querySelector(".overlay").classList.remove("show");
-            document.body.classList.remove("sidebar-open");
-        }
     </script>
-
-
 </body>
 
 </html>
