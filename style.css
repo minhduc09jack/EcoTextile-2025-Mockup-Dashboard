@@ -587,3 +587,79 @@ button:hover {
     padding-top: 40px;
   }
 }
+/* === Mobile Fixes (max-width: 768px) === */
+@media (max-width: 768px) {
+
+  body {
+      flex-direction: column;
+      overflow-x: hidden;
+  }
+
+  /* Hamburger button */
+  .hamburger {
+      display: block;
+      position: fixed;
+      top: 14px;
+      left: 14px;
+      z-index: 9999;
+      background: var(--darkest);
+      color: white;
+      font-size: 22px;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+  }
+
+  /* Sidebar hidden by default */
+  .sidebar {
+      position: fixed;
+      top: 0;
+      left: -260px;
+      width: 260px;
+      height: 100%;
+      transition: left 0.3s ease;
+      z-index: 9998;
+  }
+
+  /* When active → slide in */
+  .sidebar.active {
+      left: 0;
+  }
+
+  /* Main content spacing */
+  .main {
+      margin-top: 60px;
+      padding: 20px;
+  }
+
+  /* Toolbar items wrap */
+  .toolbar {
+      flex-direction: column;
+      gap: 12px;
+  }
+
+  .toolbar input,
+  .toolbar select,
+  .toolbar button {
+      width: 100%;
+  }
+
+  /* Table responsive */
+  table {
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+  }
+
+  th, td {
+      font-size: 13px;
+      padding: 10px;
+  }
+}
+/* Desktop chỉ hiện sidebar */
+@media (min-width: 769px) {
+  .hamburger {
+      display: none;
+  }
+}
